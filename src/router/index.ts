@@ -24,7 +24,7 @@ Vue.use(Router)
     title: 'title'               路由名称 关系到 侧边栏，tag
     icon: 'svg-name'             侧边栏里的icon
     hidden: true                 是否出现在侧边栏菜单
-    alwaysShow: true             if true, will always show the root menu (default is false)
+    alwaysShow: true             if true, 始终显示根菜单 (default is false)
                                  if false, hide the root menu when has less or equal than one children route
     breadcrumb: false            if false, the item will be hidden in breadcrumb (default is true)
     noCache: true                if true, the page will not be cached (default is false)
@@ -213,54 +213,29 @@ export const constantRoutes: RouteConfig[] = [
  * asyncRoutes
  * 需要根据用户角色动态加载的路由
  * 设置角色： 必须在第一层设置角色 然后才能在第二次设置uese
+ * 如果不设置roles，则表示：此页不需要权限
 */
 export const asyncRoutes: RouteConfig[] = [
 
   {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/directive',
-    meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'], // you can set roles in root nav
-      alwaysShow: true // will always show the root menu
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import(/* webpackChunkName: "permission-page" */ '@/views/404.vue'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-    ]
-  },
-
-
-
-
-
-  {
-    path: '/icon',
+    path: '/list',
     component: Layout,
     meta: {
-      title: 'permission',
+      title: '表单管理',
       icon: 'lock',
       roles: ['admin', 'editor'], // you can set roles in root nav
-     
+      alwaysShow: true
     },
-    redirect: '/permission/directive',
+    redirect: '/list/index',
+    
     children: [
       {
         path: 'index',
-        component: () => import(/* webpackChunkName: "icons" */ '@/views/404.vue'),
-        name: 'Icons',
+        component: () => import(/* webpackChunkName: "icons" */ '@/views/test/page.vue'),
+        name: '列表',
         meta: {
-          title: 'icons',
-          icon: 'icon',
+          title: '列表',
+          icon: 'example',
           roles: [ 'admin']
         }
       }
