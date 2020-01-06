@@ -219,53 +219,36 @@ export const asyncRoutes: RouteConfig[] = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/directive',
+    // redirect: '/permission/page',
     meta: {
-      title: 'permission',
-      icon: 'lock',
+      title: '权限控制',
+      icon: 'link',
       roles: ['admin', 'editor'], // you can set roles in root nav
-      alwaysShow: true // will always show the root menu
+      // alwaysShow: true // will always show the root menu
     },
     children: [
       {
         path: 'page',
         component: () => import(/* webpackChunkName: "permission-page" */ '@/views/404.vue'),
-        name: 'PagePermission',
+        name: 'admin用户',
         meta: {
-          title: 'pagePermission',
+          title: 'admin',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
-    ]
-  },
-
-
-
-
-
-  {
-    path: '/icon',
-    component: Layout,
-    meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'], // you can set roles in root nav
-     
-    },
-    redirect: '/permission/directive',
-    children: [
       {
-        path: 'index',
-        component: () => import(/* webpackChunkName: "icons" */ '@/views/404.vue'),
-        name: 'Icons',
+        path: 'editor',
+        component: () => import(/* webpackChunkName: "permission-page" */ '@/views/404.vue'),
+        name: 'editor用户',
         meta: {
-          title: 'icons',
-          icon: 'icon',
-          roles: [ 'admin']
+          title: 'editor',
+          roles: ['editor'] // or you can only set roles in sub nav
         }
       }
     ]
   },
+
+
  test
  
 ]
